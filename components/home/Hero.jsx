@@ -304,7 +304,7 @@ const box3Color = useTransform(
 
         {/* TECH STACK BAR */}
         <div className="grid grid-cols-2 md:grid-cols-5 border-t border-[#11111154] bg-[#F5F5F3]">
-          {["Figma", "React", "Next.js", "Node.js", "MongoDB"].map((item, i) => (
+          {["Figm", "React", "Next.js", "Node.js", "MongoDB"].map((item, i) => (
             <div
               key={i}
               className="flex items-center justify-center gap-2.5 py-5 border-r border-[#11111154] last:border-r-0 hover:bg-gray-100/50 transition-all duration-200 cursor-pointer"
