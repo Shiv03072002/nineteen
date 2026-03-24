@@ -1,10 +1,21 @@
+"use client";
+import { motion } from "framer-motion";
+import { MousePointer2
+
+ } from "lucide-react";
+const animation = {
+  duration: 4,
+  ease: "easeInOut",
+  repeat: Infinity,
+};
 
 export default function CTASection() {
   return (
     <section className="bg-[#F5F5F3]">
       <div className="max-w-7xl mx-auto border-x border-gray-200">
+        
         {/* TOP CTA */}
-        <div className="relative text-center py-20 px-6 md:px-10 border-b border-gray-200">
+        <div className="relative text-center py-20 px-6 md:px-10 border-b border-gray-200 overflow-hidden">
           
           <p className="text-xs tracking-widest uppercase text-gray-500 mb-4">
             Let's Work Together
@@ -21,86 +32,161 @@ export default function CTASection() {
 
           {/* Buttons */}
           <div className="flex justify-center gap-4">
-            <button className="bg-gray-900 text-white px-6 py-3 text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+            <button className="bg-gray-900 text-white px-6 py-3 text-sm font-medium">
               Start a Project
             </button>
-            <button className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition-all duration-200">
+            <button className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700">
               Contact Us
             </button>
           </div>
 
-          {/* Floating Card (Right) */}
-          <div className="hidden md:block absolute right-10 top-10 border border-gray-200 w-64 bg-white shadow-lg">
-            
-            <div className="bg-gray-900 text-white text-sm py-3 text-center">
-              Start a Project
+          {/* Floating Card */}
+          <motion.div
+            className="hidden md:block absolute right-0 top-0 border border-t-0  border-[#11111154] w-70  overflow-hidden"
+            animate={{
+              y: ["-120%", "0%", "0%", "-120%"],
+              opacity: [0, 1, 1, 0],
+            }}
+            transition={animation}
+          >
+
+            {/* Cursor */}
+            <motion.div
+  className="absolute bottom-0 left-0"
+  initial={{
+    x: 0,
+    y: 120,
+    opacity: 0,
+  }}
+  animate={{
+    x: [0, 110, 110, 0],
+    y: [120, -30, -30, 120],
+    opacity: [0, 1, 1, 0],
+  }}
+  transition={animation}
+>
+  <MousePointer2 
+    size={18} 
+    className="text-black fill-black scale-x-[-1]"
+  />
+</motion.div>
+
+            {/* Button */}
+            <div className="flex justify-center py-3 border-b border-[#11111154]">
+              <div className="w-full mx-4 border text-black text-sm py-2 text-center">
+                Start a Project
+              </div>
             </div>
 
-            <div className="p-4 border-t border-gray-200 flex items-center justify-between">
-              <span className="text-xl">✈️</span>
-              <div className="flex gap-2">
+            {/* Dots */}
+            <div className="flex justify-center py-4">
+              <div className="w-1/2 flex justify-center gap-2 py-2">
                 <div className="w-3 h-3 bg-red-500 rounded-full" />
                 <div className="w-3 h-3 bg-yellow-400 rounded-full" />
                 <div className="w-3 h-3 bg-green-500 rounded-full" />
               </div>
             </div>
 
-          </div>
+          </motion.div>
+
         </div>
 
-        {/* BROWSER BAR */}
-        <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-gray-200 bg-white">
-          
-          {/* Left dots */}
+        {/* Browser Bar */}
+        <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-gray-200">
+
           <div className="flex gap-2">
             <div className="w-3 h-3 bg-red-500 rounded-full" />
             <div className="w-3 h-3 bg-yellow-400 rounded-full" />
             <div className="w-3 h-3 bg-green-500 rounded-full" />
           </div>
 
-          {/* Middle nav */}
           <div className="flex gap-6">
-            <div className="w-16 h-3 bg-gray-400 rounded" />
-            <div className="w-12 h-3 bg-gray-200 rounded" />
-            <div className="w-12 h-3 bg-gray-200 rounded" />
-            <div className="w-12 h-3 bg-gray-200 rounded" />
+            <motion.div
+              className="w-12 h-3"
+              animate={{
+                y: [6, 0, 6],
+                backgroundColor: [
+                  "#f3f4f6",
+                  "#d1d5db",
+                  "#f3f4f6",
+                ],
+              }}
+              transition={animation}
+            />
+            <div className="w-12 h-3 bg-gray-200" />
+            <div className="w-12 h-3 bg-gray-200" />
+            <div className="w-12 h-3 bg-gray-200" />
           </div>
 
-          {/* Right */}
           <div className="flex gap-2">
-            <div className="w-6 h-6 bg-gray-200 rounded" />
-            <div className="w-6 h-6 bg-gray-900 rounded" />
+            <div className="w-8 h-3 bg-gray-200" />
+            <div className="w-8 h-3 bg-gray-900" />
           </div>
+
         </div>
 
-        {/* CONTENT GRID */}
+        {/* Content Grid */}
         <div className="grid md:grid-cols-2">
-          
-          {/* LEFT CONTENT */}
-          <div className="p-10  bg-white">
-            <div className="space-y-4">
-              <div className="h-6 bg-gray-200  w-full" />
-              <div className="h-5 bg-gray-200  w-30" />
-              <div className="h-3 bg-gray-200  w-full" />
-              <div className="h-3 bg-gray-200  w-90" />
-            </div>
 
-            <div className="mt-8">
-              <div className="w-40 h-10 bg-gray-900 rounded" />
-            </div>
+          {/* Left Content */}
+          <div className="p-10 overflow-hidden">
+
+            <motion.div
+              className="space-y-4"
+              animate={{
+                x: ["-120%", "0%", "0%", "-120%"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={animation}
+            >
+              <div className="h-6 bg-gray-200 w-full" />
+              <div className="h-5 bg-gray-200 w-30" />
+              <div className="h-3 bg-gray-200 w-full" />
+              <div className="h-3 bg-gray-200 w-90" />
+            </motion.div>
+
+            <motion.div
+              className="mt-8"
+              animate={{
+                y: ["100%", "0%", "0%", "100%"],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={animation}
+            >
+              <div className="w-40 h-10 bg-gray-900" />
+            </motion.div>
+
           </div>
 
-          {/* RIGHT IMAGE */}
-          <div className="p-10 bg-white">
-            <div className="h-56 bg-gray-200 rounded mb-4" />
-            <div className="flex gap-4">
-              <div className="h-10 bg-gray-200 rounded flex-1" />
-              <div className="h-10 bg-gray-200 rounded flex-1" />
-              <div className="h-10 bg-gray-200 rounded flex-1" />
-            </div>
+          {/* Right Card */}
+          <div className="p-10 overflow-hidden">
+
+            <motion.div
+              className="h-56 bg-[#D9D9D6] mb-4 flex items-end p-4"
+              animate={{
+                y: ["120%", "0%", "0%", "120%"],
+              }}
+              transition={animation}
+            >
+              <div className="flex gap-4 w-full">
+                {[1, 2, 3].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="h-10 bg-[#F5F5F3] flex-1"
+                    animate={{
+                      x: ["120%", "0%", "0%", "120%"],
+                      opacity: [0, 1, 1, 0],
+                    }}
+                    transition={animation}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
           </div>
 
         </div>
+
       </div>
     </section>
   );
