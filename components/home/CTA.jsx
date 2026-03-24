@@ -54,13 +54,12 @@ export default function CTASection() {
             <motion.div
   className="absolute bottom-0 left-0"
   initial={{
-    x: 0,
     y: 120,
     opacity: 0,
   }}
   animate={{
-    x: [0, 110, 110, 0],
-    y: [120, -30, -30, 120],
+    x: [0, 70, 70, 0],   // increased from 40 → 60 (little right)
+    y: [120, -50, -50, 120],
     opacity: [0, 1, 1, 0],
   }}
   transition={animation}
@@ -72,11 +71,30 @@ export default function CTASection() {
 </motion.div>
 
             {/* Button */}
-            <div className="flex justify-center py-3 border-b border-[#11111154]">
-              <div className="w-full mx-4 border text-black text-sm py-2 text-center">
-                Start a Project
-              </div>
-            </div>
+            <motion.div className="flex justify-center py-3 border-b border-[#11111154]">
+  <motion.div
+    className="w-full mx-4 border text-sm py-2 text-center"
+    animate={{
+      backgroundColor: [
+        "#ffffff",  // default white
+        "#ffffff",
+        "#111111",  // cursor reaches → black
+        "#111111",
+        "#ffffff",  // reverse → white
+      ],
+      color: [
+        "#111111",  // default black text
+        "#111111",
+        "#ffffff",  // cursor reaches → white text
+        "#ffffff",
+        "#111111",  // reverse
+      ],
+    }}
+    transition={animation}
+  >
+    Start a Project
+  </motion.div>
+</motion.div>
 
             {/* Dots */}
             <div className="flex justify-center py-4">
