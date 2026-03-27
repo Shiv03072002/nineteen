@@ -12,10 +12,10 @@ const animation = {
 export default function CTASection() {
   return (
     <section className="bg-[#F5F5F3]">
-      <div className="max-w-7xl mx-auto border-x border-gray-200">
+      <div className="max-w-7xl mx-auto border-x  border-[#11111154]">
         
         {/* TOP CTA */}
-        <div className="relative text-center py-20 px-6 md:px-10 border-b border-gray-200 overflow-hidden">
+        <div className="relative text-center py-20 px-6 md:px-10 border-b  border-[#11111154] overflow-hidden">
           
           <p className="text-xs tracking-widest uppercase text-gray-500 mb-4">
             Let's Work Together
@@ -35,7 +35,7 @@ export default function CTASection() {
             <button className="bg-gray-900 text-white px-6 py-3 text-sm font-medium">
               Start a Project
             </button>
-            <button className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700">
+            <button className="border  border-[#11111154] px-6 py-3 text-sm font-medium text-gray-700">
               Contact Us
             </button>
           </div>
@@ -110,7 +110,7 @@ export default function CTASection() {
         </div>
 
         {/* Browser Bar */}
-        <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b border-gray-200">
+        <div className="flex items-center justify-between px-6 md:px-10 py-4 border-b  border-[#11111154]">
 
           <div className="flex gap-2">
             <div className="w-3 h-3 bg-red-500 rounded-full" />

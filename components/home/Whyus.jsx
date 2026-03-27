@@ -34,11 +34,11 @@ const stats = [
 export default function WhyUs() {
   return (
     <section className=" bg-[#F5F5F3] max-w-7xl mx-auto">
-      <div className="border-x border-gray-300">
+      <div className="border-x border-[#11111154]">
         {/* Main grid */}
-        <div className="flex flex-col lg:flex-row border-b border-gray-300">
+        <div className="flex flex-col lg:flex-row border-b border-[#11111154]">
           {/* Left col: text + CTA - 40% width */}
-          <div className="lg:w-[40%] border-r border-gray-300 p-10 md:p-16 flex flex-col justify-center gap-6">
+          <div className="lg:w-[40%] border-r border-[#11111154] p-10 md:p-16 flex flex-col justify-center gap-6">
             <div>
               <p className="text-xs tracking-[0.2em] uppercase text-[#3A3A3A] mb-4">
                 Why Choose Us
@@ -68,8 +68,8 @@ export default function WhyUs() {
                   key={f.title}
                   className={[
                     "p-8 md:p-10 flex flex-col gap-5",
-                    i % 2 === 1 ? "border-l border-gray-300" : "",
-                    i >= 2 ? "border-t border-gray-300" : "",
+                    i % 2 === 1 ? "border-l border-[#11111154]" : "",
+                    i >= 2 ? "border-t border-[#11111154]" : "",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -97,7 +97,7 @@ export default function WhyUs() {
             <div
               key={s.label}
               className={`flex flex-col items-center justify-center py-8 md:py-10 gap-2 ${
-                idx < stats.length - 1 ? "border-r border-gray-300" : ""
+                idx < stats.length - 1 ? "border-r border-[#11111154]" : ""
               }`}
             >
               <span className="text-3xl md:text-4xl font-semibold text-black leading-none">

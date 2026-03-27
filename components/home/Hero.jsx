@@ -13,45 +13,17 @@ export default function HeroSection() {
 
   const progress = useMotionValue(0);
 
+  // Single master animation
   useEffect(() => {
     const controls = animate(progress, 1, {
-      duration: 6,
+      duration: 8,
       ease: "linear",
       repeat: Infinity,
     });
     return () => controls.stop();
   }, []);
 
-  const circleColor = useTransform(progress, [0, 1], ["#D9D9D6", "#6F6F6F"]);
-  const imageColor  = useTransform(progress, [0, 1], ["#F5F5F3", "#D9D9D6"]);
-
-  const box1Color = useTransform(
-  progress,
-  [0, 0.2, 0.4],
-  ["#D9D9D6", "#6F6F6F", "#D9D9D6"]
-);
-
-const box2Color = useTransform(
-  progress,
-  [0.3, 0.5, 0.7],
-  ["#D9D9D6", "#6F6F6F", "#D9D9D6"]
-);
-
-const box3Color = useTransform(
-  progress,
-  [0.6, 0.8, 1],
-  ["#D9D9D6", "#6F6F6F", "#D9D9D6"]
-);
-
-  // Active index cycle
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % 3);
-    }, 800);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Column 1 cursor: bottom-center → top-right
+  // Column 1 cursor - synchronized duration
   useEffect(() => {
     const animationX = animate(cursorX, [0, 120, 120, 0], {
       duration: 4,
@@ -68,80 +40,120 @@ const box3Color = useTransform(
       animationY.stop();
     };
   }, []);
-  
 
+  // Column 3 cursor - synchronized with master
   useEffect(() => {
-  const TOTAL = 2.2;
-  const PAUSE = 1.8;
+    let isActive = true;
+    const TOTAL = 4;
+    const PAUSE = 0;
 
-  function runSequence() {
-    // Fade in just before motion starts
-    animate(cursorOpacity, 1, { duration: 0.18, ease: "easeOut" });
+    function runSequence() {
+      if (!isActive) return;
 
-    // Forward animation: from right to left
-    const animX = animate(cursorRightX, [620, 180, 68], {
-      duration: TOTAL,
-      ease: [0.42, 0, 0.28, 1],
-      times: [0, 0.45, 1],
-    });
+      animate(cursorOpacity, 1, { duration: 0.18, ease: "easeOut" });
 
-    const animY = animate(cursorRightY, [90, 30, 30], {
-      duration: TOTAL,
-      ease: [0.42, 0, 0.28, 1],
-      times: [0, 0.45, 1],
-    });
-
-    
-
-    // After forward animation completes, do reverse animation
-    const timeout = setTimeout(() => {
-      // Reverse animation: from left back to right
-      const reverseAnimX = animate(cursorRightX, [68, 180, 620], {
+      const animX = animate(cursorRightX, [620, 180, 68], {
         duration: TOTAL,
         ease: [0.42, 0, 0.28, 1],
-        times: [0, 0.55, 1],
+        times: [0, 0.45, 1],
       });
 
-      const reverseAnimY = animate(cursorRightY, [30, 30, 90], {
+      const animY = animate(cursorRightY, [90, 30, 30], {
         duration: TOTAL,
         ease: [0.42, 0, 0.28, 1],
-        times: [0, 0.55, 1],
+        times: [0, 0.45, 1],
       });
 
-      // After reverse completes, fade out and reset
-      const reverseTimeout = setTimeout(() => {
-        animate(cursorOpacity, 0, { duration: 0.22, ease: "easeIn" }).then(() => {
-          // Reset to starting position
-          cursorRightX.set(620);
-          cursorRightY.set(90);
-          // Brief gap before next loop
-          setTimeout(runSequence, 300);
-        });
-      }, TOTAL * 1000);
+      const timeout = setTimeout(
+        () => {
+          if (!isActive) return;
+
+          const reverseAnimX = animate(cursorRightX, [68, 180, 620], {
+            duration: TOTAL,
+            ease: [0.42, 0, 0.28, 1],
+            times: [0, 0.55, 1],
+          });
+
+          const reverseAnimY = animate(cursorRightY, [30, 30, 90], {
+            duration: TOTAL,
+            ease: [0.42, 0, 0.28, 1],
+            times: [0, 0.55, 1],
+          });
+
+          const reverseTimeout = setTimeout(() => {
+            if (!isActive) return;
+            animate(cursorOpacity, 0, { duration: 0.22, ease: "easeIn" }).then(
+              () => {
+                if (!isActive) return;
+                cursorRightX.set(620);
+                cursorRightY.set(90);
+                setTimeout(runSequence, 300);
+              },
+            );
+          }, TOTAL * 1000);
+
+          return () => {
+            reverseAnimX.stop();
+            reverseAnimY.stop();
+            clearTimeout(reverseTimeout);
+          };
+        },
+        TOTAL * 1000 + PAUSE * 1000,
+      );
 
       return () => {
-        reverseAnimX.stop();
-        reverseAnimY.stop();
-        clearTimeout(reverseTimeout);
+        animX.stop();
+        animY.stop();
+        clearTimeout(timeout);
       };
-    }, TOTAL * 1000 + PAUSE * 1000);
+    }
 
+    const init = setTimeout(runSequence, 600);
     return () => {
-      animX.stop();
-      animY.stop();
-      clearTimeout(timeout);
+      isActive = false;
+      clearTimeout(init);
     };
-  }
+  }, []);
 
-  // Initial delay so it doesn't fire immediately on mount
-  const init = setTimeout(runSequence, 600);
-  return () => clearTimeout(init);
-}, []);
+  const circleColor = useTransform(
+    progress,
+    [0, 0.5, 1],
+    ["#D9D9D6", "#6F6F6F", "#D9D9D6"],
+  );
+  const imageColor = useTransform(
+    progress,
+    [0, 0.5, 1],
+    ["#F5F5F3", "#D9D9D6", "#F5F5F3"],
+  );
+
+  const box1Color = useTransform(
+    progress,
+    [0, 0.2, 0.4],
+    ["#D9D9D6", "#6F6F6F", "#D9D9D6"],
+  );
+
+  const box2Color = useTransform(
+    progress,
+    [0.3, 0.5, 0.7],
+    ["#D9D9D6", "#6F6F6F", "#D9D9D6"],
+  );
+
+  const box3Color = useTransform(
+    progress,
+    [0.6, 0.8, 1],
+    ["#D9D9D6", "#6F6F6F", "#D9D9D6"],
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 3);
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section>
       <div className="max-w-7xl mx-auto border-x border-[#11111154] bg-[#F5F5F3]">
-
         {/* TOP SECTION */}
         <div className="grid md:grid-cols-2">
           {/* LEFT */}
@@ -157,8 +169,8 @@ const box3Color = useTransform(
           </div>
 
           {/* RIGHT */}
-          <div className="p-10 flex flex-col justify-center gap-6">
-            <p className="text-gray-600 text-lg max-w-md leading-relaxed">
+          <div className="p-10 ml-20 flex flex-col justify-center gap-6">
+            <p className="text-gray-600 text-lg max-w-xl leading-relaxed">
               A design and development studio focused on creating scalable,
               user-focused digital experiences for modern businesses.
             </p>
@@ -174,44 +186,43 @@ const box3Color = useTransform(
         </div>
 
         {/* BOTTOM GRID MOCKUP - 30% | 40% | 30% */}
-       <div className="grid md:grid-cols-[30%_40%_30%] mx-14 border border-[#11111154] border-b-0">
-
-          {/* COLUMN 1 — 30% - cursor bottom-center → top-right */}
+        <div className="grid md:grid-cols-[30%_40%_30%] mx-14 border border-[#11111154] border-b-0">
+          {/* COLUMN 1 — 30% */}
           <div className="border-r border-[#11111154]">
             <div className="flex items-center gap-4 p-4 border-b border-[#11111154] bg-[#F5F5F3]">
-  <motion.div
-    className="w-4 h-4 bg-red-500 rounded-full"
-    animate={{ y: [0, -8, 0] }}
-    transition={{
-      duration: 1.5, // slower bounce
-      repeat: Infinity,
-      ease: "easeInOut",
-      repeatDelay: 4
-    }}
-  />
-  <motion.div
-    className="w-4 h-4 bg-yellow-400 rounded-full"
-    animate={{ y: [0, -8, 0] }}
-    transition={{
-      duration: 1.5,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay: 0.5,
-      repeatDelay: 4
-    }}
-  />
-  <motion.div
-    className="w-4 h-4 bg-green-300 rounded-full"
-    animate={{ y: [0, -8, 0] }}
-    transition={{
-      duration: 1.5,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay: 1,
-      repeatDelay: 4
-    }}
-  />
-</div>
+              <motion.div
+                className="w-4 h-4 bg-red-500 rounded-full"
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatDelay: 4,
+                }}
+              />
+              <motion.div
+                className="w-4 h-4 bg-yellow-400 rounded-full"
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
+                  repeatDelay: 4,
+                }}
+              />
+              <motion.div
+                className="w-4 h-4 bg-green-300 rounded-full"
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                  repeatDelay: 4,
+                }}
+              />
+            </div>
 
             <div className="p-4 space-y-4 relative overflow-hidden min-h-[280px]">
               <div className="flex items-center justify-between relative z-10">
@@ -228,7 +239,7 @@ const box3Color = useTransform(
                 className="h-40 relative z-10 border border-[#11111154]"
               />
 
-              {/* Cursor 1: bottom-center → top-right */}
+              {/* Cursor 1 */}
               <motion.div
                 className="absolute pointer-events-none z-20"
                 style={{
@@ -257,14 +268,23 @@ const box3Color = useTransform(
               <div className="h-3 bg-[#D9D9D6] w-full" />
               <div className="h-3 bg-[#E6E6E3] w-60 mx-auto" />
               <div className="grid grid-cols-3 gap-4">
-                <motion.div className="h-40" style={{ backgroundColor: box1Color }} />
-                <motion.div className="h-40" style={{ backgroundColor: box2Color }} />
-                <motion.div className="h-40" style={{ backgroundColor: box3Color }} />
+                <motion.div
+                  className="h-40"
+                  style={{ backgroundColor: box1Color }}
+                />
+                <motion.div
+                  className="h-40"
+                  style={{ backgroundColor: box2Color }}
+                />
+                <motion.div
+                  className="h-40"
+                  style={{ backgroundColor: box3Color }}
+                />
               </div>
             </div>
           </div>
 
-          {/* COLUMN 3 — 30% - cursor enters right-center, arcs up, lands top-left */}
+          {/* COLUMN 3 — 30% */}
           <div>
             <div className="p-4 border-b border-[#11111154]  flex items-center justify-center">
               <div className="h-4 w-32 bg-[#D9D9D6]" />
@@ -284,7 +304,7 @@ const box3Color = useTransform(
                 </div>
               ))}
 
-              {/* Cursor 3: right-center → arc up → top-left target */}
+              {/* Cursor 3 */}
               <motion.div
                 className="absolute pointer-events-none z-20"
                 style={{
@@ -299,22 +319,32 @@ const box3Color = useTransform(
               </motion.div>
             </div>
           </div>
-
         </div>
 
         {/* TECH STACK BAR */}
         <div className="grid grid-cols-2 md:grid-cols-5 border-t border-[#11111154] bg-[#F5F5F3]">
-          {["Figma", "React", "Next.js", "Node.js", "MongoDB"].map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center gap-2.5 py-5 border-r border-[#11111154] last:border-r-0 hover:bg-gray-100/50 transition-all duration-200 cursor-pointer"
-            >
-              <div className="w-5 h-5 bg-gray-300 rounded-full" />
-              <span className="text-xl text-gray-800 font-medium">{item}</span>
-            </div>
-          ))}
-        </div>
-
+  {[
+    { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+    { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
+    { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" }
+  ].map((item, i) => (
+    <div
+      key={i}
+      className="flex items-center justify-center gap-2.5 py-5 border-r border-[#11111154] last:border-r-0 hover:bg-gray-100/50 transition-all duration-200 cursor-pointer"
+    >
+      <img 
+        src={item.icon} 
+        alt={item.name}
+        className="w-6 h-6 object-contain"
+      />
+      <span className="text-xl text-gray-800 font-medium">
+        {item.name}
+      </span>
+    </div>
+  ))}
+</div>
       </div>
     </section>
   );

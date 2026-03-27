@@ -9,37 +9,37 @@ const testimonials = [
     name: "Rahul Verma",
     role: "CEO, E-commerce Brand",
     text: "Fast delivery, clean code, and great communication. We'll definitely work with them again.",
-    image: "/images/user1.jpg",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Rahul",
   },
   {
     name: "Karthik Reddy",
     role: "Founder, SaaS Startup",
     text: "Working with 1970 Studio was a great experience. They understood our requirements clearly and delivered a product that was visually impressive.",
-    image: "/images/user2.jpg",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Karthik",
   },
   {
     name: "Priya Sharma",
     role: "CTO, Tech Solutions",
     text: "Outstanding quality and attention to detail. The team went above and beyond our expectations.",
-    image: "/images/user3.jpg",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Priya",
   },
   {
     name: "Amit Patel",
     role: "Marketing Director",
     text: "Incredible work ethic and technical expertise. Highly recommended for any digital project.",
-    image: "/images/user4.jpg",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Amit",
   },
   {
     name: "Neha Gupta",
     role: "Product Manager",
     text: "Excellent collaboration and innovative solutions. They truly understand modern web development.",
-    image: "/images/user5.jpg",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Neha",
   },
   {
     name: "Vikram Singh",
     role: "Startup Founder",
     text: "The best development experience I've had. Delivered ahead of schedule with perfect execution.",
-    image: "/images/user6.jpg",
+    image: "https://api.dicebear.com/7.x/adventurer/svg?seed=Vikram",
   },
 ];
 
@@ -58,8 +58,8 @@ export default function TestimonialsSection() {
   return (
     <section className=" bg-[#F5F5F3] max-w-7xl mx-auto">
       {/* Top Section */}
-      <div className="border-x border-gray-300">
-        <div className="flex items-center justify-between border-b border-gray-300">
+      <div className="border-x  border-[#11111154]">
+        <div className="flex items-center justify-between border-b  border-[#11111154]">
           {/* Left */}
           <div className="p-10 md:p-16">
             <p className="text-xs tracking-[0.2em] uppercase text-[#3A3A3A] mb-4">
@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Testimonials Swiper */}
-      <div className="border-x border-gray-300">
+      <div className="border-x  border-[#11111154]">
         <Swiper
           modules={[Autoplay]}
           autoplay={{
@@ -102,7 +102,7 @@ export default function TestimonialsSection() {
                 // Original Layout for even slides
                 <div className="grid md:grid-cols-4">
                   {/* Left Profile */}
-                  <div className="flex bg-[#FAFAF8] flex-col items-center justify-center p-8 md:p-10 border-r border-gray-300 min-h-[400px]">
+                  <div className="flex bg-[#FAFAF8] flex-col items-center justify-center p-8 md:p-10 border-r  border-[#11111154] min-h-[400px]">
                     <img
                       src={slide.leftProfile.image}
                       alt={slide.leftProfile.name}
@@ -114,7 +114,7 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Testimonial 1 */}
-                  <div className="p-8 md:p-10 border-r border-gray-300 flex flex-col justify-between min-h-[400px]">
+                  <div className="p-8 md:p-10 border-r  border-[#11111154] flex flex-col justify-between min-h-[400px]">
                     <p className="text-lg text-[#3A3A3A] leading-relaxed mb-8">
                       "{slide.testimonial1.text}"
                     </p>
@@ -125,7 +125,7 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Testimonial 2 */}
-                  <div className="p-8 md:p-10 border-r border-gray-300 flex flex-col justify-between min-h-[400px]">
+                  <div className="p-8 md:p-10 border-r  border-[#11111154] flex flex-col justify-between min-h-[400px]">
                     <p className="text-lg text-[#3A3A3A] leading-relaxed mb-8">
                       "{slide.testimonial2.text}"
                     </p>
@@ -151,7 +151,7 @@ export default function TestimonialsSection() {
                 // Reverse Layout for odd slides
                 <div className="grid md:grid-cols-4">
                   {/* Right Profile - now first */}
-                  <div className="flex flex-col items-center justify-center p-8 md:p-10 bg-[#FAFAF8] border-r border-gray-300 min-h-[400px]">
+                  <div className="flex flex-col items-center justify-center p-8 md:p-10 bg-[#FAFAF8] border-r  border-[#11111154] min-h-[400px]">
                     <img
                       src={slide.rightProfile.image}
                       alt={slide.rightProfile.name}
@@ -163,7 +163,7 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Testimonial 2 - now second */}
-                  <div className="p-8 md:p-10 border-r border-gray-300 flex flex-col justify-between min-h-[400px]">
+                  <div className="p-8 md:p-10 border-r  border-[#11111154] flex flex-col justify-between min-h-[400px]">
                     <p className="text-lg text-[#3A3A3A] leading-relaxed mb-8">
                       "{slide.testimonial2.text}"
                     </p>
@@ -174,7 +174,7 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Testimonial 1 - now third */}
-                  <div className="p-8 md:p-10 border-r border-gray-300 flex flex-col justify-between min-h-[400px]">
+                  <div className="p-8 md:p-10 border-r  border-[#11111154] flex flex-col justify-between min-h-[400px]">
                     <p className="text-lg text-[#3A3A3A] leading-relaxed mb-8">
                       "{slide.testimonial1.text}"
                     </p>

@@ -12,11 +12,12 @@ export default function Home() {
     <div>
       <Hero />
       <Container/>
-      <Work />
+       <Services />
+      
        <Container/>
-      <Services />
+   <Whyus />
        <Container/>
-      <Whyus />
+         <Work />
        <Container/>
       <Process />
        <Container/>

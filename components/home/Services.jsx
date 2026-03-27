@@ -30,9 +30,9 @@ export default function Services() {
 
   return (
     <section className=" bg-[#F5F5F3] max-w-7xl mx-auto">
-      <div className="border-x border-gray-300">
+      <div className="border-x border-[#11111154]">
         {/* Header */}
-        <div className="border-b border-gray-300">
+        <div className="border-b border-[#11111154]">
           <div className="flex flex-col lg:flex-row items-center justify-between">
             <div className="p-10 md:p-16">
               <p className="text-xs tracking-[0.2em] uppercase text-[#3A3A3A] mb-4">
@@ -52,14 +52,14 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 mx-14 border-x border-gray-300 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mx-14 border-x border-[#11111154] ">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.title}
                 className={[
-                  "border-gray-300",
+                  "border-[#11111154]",
                   i % 2 === 1 ? "lg:border-l" : "",
                   i >= 2 ? "border-t" : "",
                 ]
@@ -67,7 +67,7 @@ export default function Services() {
                   .join(" ")}
               >
                 {/* Title row */}
-                <div className="flex items-center gap-3 px-8 md:px-10 py-5 border-b border-gray-300">
+                <div className="flex items-center gap-3 px-8 md:px-10 py-5 border-b border-[#11111154]">
                   <div className="text-[#3A3A3A]">
                     <Icon size={20} strokeWidth={1.5} />
                   </div>

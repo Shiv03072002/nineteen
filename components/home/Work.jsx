@@ -38,9 +38,9 @@ export default function WorkSection() {
   return (
     <section className="">
       {/* Top Header */}
-      <div className="max-w-7xl mx-auto border-x border-gray-300 bg-[#F5F5F3]">
-        <div className="grid md:grid-cols-2 border-b border-gray-200">
-          <div className="p-10 border-r border-gray-200">
+      <div className="max-w-7xl mx-auto border-x border-[#11111154] bg-[#F5F5F3]">
+        <div className="grid md:grid-cols-2 border-b border-[#11111154]">
+          <div className="p-10 ">
             <p className="text-xs tracking-widest text-gray-500 uppercase mb-4">
               Our Work
             </p>
@@ -79,10 +79,10 @@ export default function WorkSection() {
 
 function ProjectCard({ title, tag, description, Icon, iconColor, tools }) {
   return (
-    <div className=" last:border-r-0 hover:bg-[#EBEBE8] transition-all duration-300 group">
+    <div className=" last:border-r-0 border-r  border-[#11111154]  transition-all duration-300 group">
       
       {/* Header */}
-      <div className="flex justify-between items-center px-6 py-5 border-b border-gray-200 bg-[#F5F5F3] group-hover:bg-[#EBEBE8] transition-colors duration-300">
+      <div className="flex justify-between items-center px-6 py-5 border-b border-[#11111154] bg-[#F5F5F3]  transition-colors duration-300">
         <div className="flex items-center gap-3">
           {/* Icon */}
           <div className="w-8 h-8 flex items-center justify-center  transition-colors duration-300 rounded-lg">
@@ -95,7 +95,7 @@ function ProjectCard({ title, tag, description, Icon, iconColor, tools }) {
           </h3>
         </div>
 
-        <span className="text-xs border border-gray-300 px-3 py-1.5 rounded-full text-gray-600 bg-[#F5F5F3] group-hover:border-gray-400 group-hover:text-gray-700 transition-all duration-300">
+        <span className="text-xs border  border-[#11111154] px-3 py-1.5 rounded-full text-gray-600 bg-[#F5F5F3] group-hover:border-gray-400 group-hover:text-gray-700 transition-all duration-300">
           {tag}
         </span>
       </div>
@@ -122,7 +122,7 @@ function ProjectCard({ title, tag, description, Icon, iconColor, tools }) {
               {tools.map((tool) => (
                 <div 
                   key={tool.id}
-                  className="w-7 h-7 bg-[#EBEBE8] rounded-full border border-gray-200 hover:bg-[#E0E0DC] hover:border-gray-300 transition-all duration-200 cursor-pointer flex items-center justify-center group/tool"
+                  className="w-7 h-7 bg-[#EBEBE8] rounded-full border border-gray-200  hover: border-[#11111154] transition-all duration-200 cursor-pointer flex items-center justify-center group/tool"
                   title={tool.name}
                 >
                   <tool.icon className="w-3.5 h-3.5 text-gray-600 group-hover/tool:scale-110 transition-transform duration-200" />
@@ -132,7 +132,7 @@ function ProjectCard({ title, tag, description, Icon, iconColor, tools }) {
           </div>
 
           {/* View Case Study Button */}
-          <button className="w-full mt-4 px-4 py-3 bg-black text-white border border-gray-300 text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 group/btn hover:bg-gray-900">
+          <button className="w-full mt-4 px-4 py-3 bg-black text-white border  border-[#11111154] text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 group/btn hover:bg-gray-900">
             <span>View Case Study</span>
             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
           </button>

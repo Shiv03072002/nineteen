@@ -5,10 +5,10 @@ export default function Footer() {
     <footer className="w-full bg-[#F5F5F3]  ">
       {/* Main footer grid */}
       <div className="max-w-7xl mx-auto ">
-        <div className="flex flex-col lg:flex-row border-x border-gray-300">
+        <div className="flex flex-col lg:flex-row border-x  border-[#11111154]">
 
           {/* Col 1 — Brand (33% width) */}
-          <div className="w-full lg:w-[33%] py-12 pr-0 pl-[20px] flex flex-col justify-between gap-10 border-b lg:border-b-0 lg:border-r border-gray-300">
+          <div className="w-full lg:w-[33%] py-12 pr-0 pl-[20px] flex flex-col justify-between gap-10 border-b lg:border-b-0 lg:border-r  border-[#11111154]">
             <div className="flex flex-col gap-2">
               {/* Badge */}
               <span className="inline-block border border-gray-400 text-black text-[12px] tracking-[0.14em] uppercase px-3 py-0.75 w-fit rounded-full">
@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="w-full lg:w-[67%] flex flex-col md:flex-row">
             
             {/* Col 2 — Services */}
-            <div className="flex-1 py-12 lg:px-10 flex flex-col gap-6 bg-[#FAFAF8] border-b md:border-b-0 md:border-r border-gray-300">
+            <div className="flex-1 py-12 lg:px-10 flex flex-col gap-6 bg-[#FAFAF8] border-b md:border-b-0 md:border-r  border-[#11111154]">
               <p className="text-[12px] font-medium tracking-[0.18em] uppercase text-black">
                 Services
               </p>
@@ -68,7 +68,7 @@ export default function Footer() {
             </div>
 
             {/* Col 3 — Company */}
-            <div className="flex-1 py-12 lg:px-10 flex flex-col gap-6 bg-[#FAFAF8] border-b md:border-b-0 md:border-r border-gray-300">
+            <div className="flex-1 py-12 lg:px-10 flex flex-col gap-6 bg-[#FAFAF8] border-b md:border-b-0 md:border-r  border-[#11111154]">
               <p className="text-[12px] font-medium tracking-[0.18em] uppercase text-black">
                 Company
               </p>
@@ -110,7 +110,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-300">
+      <div className="border-t  border-[#11111154]">
         <div className="max-w-7xl mx-auto px-8 lg:px-16 py-5">
           <p className="text-[14px] text-[#3A3A3A] text-center">
             © 2026 1970 Studio | All rights reserved

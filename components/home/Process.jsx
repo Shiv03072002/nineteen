@@ -25,8 +25,8 @@ export default function ProcessSection() {
   return (
     <section className=" bg-[#F5F5F3] max-w-7xl mx-auto">
       {/* Top Section */}
-      <div className="border-x border-gray-300">
-        <div className="flex items-center justify-between border-b border-gray-300">
+      <div className="border-x border-[#11111154]">
+        <div className="flex items-center justify-between border-b  border-[#11111154]">
           {/* Left */}
           <div className="p-10 md:p-16">
             <p className="text-xs tracking-[0.2em] uppercase text-[#3A3A3A] mb-4">
@@ -49,12 +49,12 @@ export default function ProcessSection() {
       </div>
 
       {/* Steps */}
-      <div className="border-x border-gray-300">
+      <div className="border-x  border-[#11111154]">
         <div className="grid md:grid-cols-4">
           {steps.map((step, index) => (
             <div
               key={index}
-              className={`p-8 md:p-10 border-gray-300 ${
+              className={`p-8 md:p-10  border-[#11111154] ${
                 index !== steps.length - 1 ? "border-r" : ""
               } ${
                 index === 0 ? "border-b md:border-b-0" : ""
